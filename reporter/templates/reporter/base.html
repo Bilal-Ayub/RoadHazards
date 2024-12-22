@@ -1,0 +1,8 @@
+<h1>
+    <a class="small-link" href="{% url "reporter:index" %}">Home</a>
+
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'style.css'%}">
+
+
+    {% block content %}{% endblock content %}

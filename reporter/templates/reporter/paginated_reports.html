@@ -1,0 +1,31 @@
+{% extends "reporter/base.html" %}
+
+{% block content %}
+
+<br><br>
+<ul>
+    {% for report in reports %}
+        <li>
+            <img class="banner" src="{{ report.image.url }}" alt="report image"/>
+            <p>{{ report.get_report_type_display }}</p>
+            <p>Coordinates: {{ report.location_lat }}, {{ report.location_lon }}</p>
+            <p>Reported on: {{ report.reported_at }}</p>
+            <p>Description: {{ report.report_description }}</p>
+            <p>Priority: {{ report.priority }}</p> <!-- Display the priority -->
+        </li>
+    {% empty %}
+        <li>No reports available.</li>
+    {% endfor %}
+</ul>
+
+<div class="pagination">
+    {% if current_page > 1 %}
+        <a href="?page={{ current_page|add:-1 }}">Previous</a>
+    {% endif %}
+    <span>Page {{ current_page }} of {{ total_pages }}</span>
+    {% if current_page < total_pages %}
+        <a href="?page={{ current_page|add:1 }}">Next</a>
+    {% endif %}
+</div>
+
+{% endblock content %}
